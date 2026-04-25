@@ -23,15 +23,31 @@ $refs = @(
     (Join-Path $bepcore "BepInEx.Unity.Mono.dll")
 )
 
-# Build reference arguments for CSC
-$refArgs = $refs | ForEach-Object { "/reference:`"$_`"" }
-$csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
-$outPath = Join-Path $outDir "NethTelemetry.dll"
 $srcPath = Join-Path $scriptPath "NethTelemetry.cs"
+$outPath = Join-Path $outDir "NethTelemetry.dll"
+
+# Generate a response file to pass arguments to CSC.
+# This is the most reliable way to handle complex paths with spaces and quotes across different PowerShell versions.
+$rspPath = Join-Path $scriptPath "build.rsp"
+$rspContent = @(
+    "/target:library",
+    "/out:`"$outPath`""
+)
+foreach ($ref in $refs) {
+    $rspContent += "/reference:`"$ref`""
+}
+$rspContent += "`"$srcPath`""
+
+# Write the response file using UTF8 (no BOM preferred, but UTF8 is standard)
+$rspContent | Out-File -FilePath $rspPath -Encoding UTF8
+
+$csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 
 Write-Host "Compiling NethLogger v7.3.0..." -ForegroundColor Cyan
-# Run the compiler. Passing $refArgs as an array to ensure PowerShell handles the spaces/quotes correctly.
-& $csc /target:library "/out:$outPath" $refArgs "$srcPath"
+& $csc "@$rspPath"
+
+# Cleanup the temporary response file
+if (Test-Path $rspPath) { Remove-Item $rspPath }
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "SUCCESS: NethTelemetry.dll generated at $outPath" -ForegroundColor Green
