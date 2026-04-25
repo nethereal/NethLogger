@@ -35,10 +35,9 @@ To enable the loader:
 ### 4. Usage
 1. Launch **SimplePlanes 2**.
 2. Enter the Flight Scene.
-3. Run the dashboard from the game root:
-```powershell
-.\NethLogger\listener.ps1
-```
+3. Run a dashboard from the game root:
+   * **PowerShell**: `.\NethLogger\listener.ps1`
+   * **Python**: `python .\NethLogger\listener.py`
 
 ## Telemetry Protocol
 Data is broadcast over UDP to `127.0.0.1:5555` as a pipe-delimited (`|`) string containing 47 fields:
