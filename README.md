@@ -16,6 +16,7 @@ A high-performance, 100Hz telemetry extraction suite and aerospace dashboard for
 ### 1. Requirements
 - **BepInEx 6.0 (Mono)**: Required for plugin loading.
 - **PowerShell 5.1+**: Required for the dashboard and build scripts.
+- **Unity Doorstop**: The DLL proxy (`winhttp.dll`) required for non-intrusive loading.
 
 ### 2. Compilation
 Run the provided build script to compile the DLL:
@@ -24,7 +25,13 @@ Run the provided build script to compile the DLL:
 ```
 This will generate `NethTelemetry.dll` and place it in the `BepInEx\plugins` folder.
 
-### 3. Usage
+### 3. Setup (Non-Intrusive)
+To enable the loader without modifying original game files:
+1. Copy the `doorstop_config.ini` from the `NethLogger` folder to the game root directory.
+2. Ensure `winhttp.dll` (Doorstop) is present in the game root directory.
+3. The mod will now automatically load from the `NethLogger` subfolder.
+
+### 4. Usage
 1. Launch **SimplePlanes 2**.
 2. Enter the Flight Scene.
 3. Run the dashboard:
