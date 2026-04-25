@@ -1,29 +1,35 @@
-# NethLogger Build Script (Portable)
-$root = ".." # Assumes script is in NethLogger subfolder
-$managed = "$root\SimplePlanes 2_Data\Managed"
-$bepcore = "$root\NethLogger\BepInEx\core"
-$outDir = "$root\NethLogger\BepInEx\plugins"
+# NethLogger Build Script (Universal)
+# This script works whether called from the root or from within the NethLogger folder.
 
-if (!(Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir }
+$scriptPath = $PSScriptRoot
+if (!$scriptPath) { $scriptPath = Get-Location }
+
+# Root is the parent of NethLogger (the game root)
+$gameRoot = Join-Path $scriptPath ".."
+$managed = Join-Path $gameRoot "SimplePlanes 2_Data\Managed"
+$bepcore = Join-Path $scriptPath "BepInEx\core"
+$outDir = Join-Path $scriptPath "BepInEx\plugins"
+
+if (!(Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir -Force }
 
 $refs = @(
-    "$managed\UnityEngine.dll",
-    "$managed\UnityEngine.CoreModule.dll",
-    "$managed\UnityEngine.UI.dll",
-    "$managed\UnityEngine.InputLegacyModule.dll",
-    "$managed\UnityEngine.PhysicsModule.dll",
-    "$managed\netstandard.dll",
-    "$bepcore\BepInEx.Core.dll",
-    "$bepcore\BepInEx.Unity.Mono.dll"
+    (Join-Path $managed "UnityEngine.dll"),
+    (Join-Path $managed "UnityEngine.CoreModule.dll"),
+    (Join-Path $managed "UnityEngine.UI.dll"),
+    (Join-Path $managed "UnityEngine.InputLegacyModule.dll"),
+    (Join-Path $managed "UnityEngine.PhysicsModule.dll"),
+    (Join-Path $managed "netstandard.dll"),
+    (Join-Path $bepcore "BepInEx.Core.dll"),
+    (Join-Path $bepcore "BepInEx.Unity.Mono.dll")
 )
 
-$refArgs = $refs | ForEach-Object { "/reference:`"$_`"" }
+$refArgs = $refs | ForEach-Object { "/r:`"$_`"" }
 $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
-$outPath = "$outDir\NethTelemetry.dll"
-$srcPath = "NethTelemetry.cs"
+$outPath = Join-Path $outDir "NethTelemetry.dll"
+$srcPath = Join-Path $scriptPath "NethTelemetry.cs"
 
-Write-Host "Compiling NethLogger v2.7.1..." -ForegroundColor Cyan
-& $csc /target:library "/out:$outPath" $refArgs "$srcPath"
+Write-Host "Compiling NethLogger v7.3.0..." -ForegroundColor Cyan
+& $csc /target:library "/out:$outPath" $refArgs $srcPath
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "SUCCESS: NethTelemetry.dll generated at $outPath" -ForegroundColor Green
