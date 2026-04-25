@@ -1,11 +1,11 @@
 # NethLogger Build Script (Universal)
 # This script works whether called from the root or from within the NethLogger folder.
 
-$scriptPath = $PSScriptRoot
-if (!$scriptPath) { $scriptPath = Get-Location }
+# Get the absolute path of the directory containing this script
+$scriptPath = [System.IO.Path]::GetFullPath($PSScriptRoot)
 
-# Root is the parent of NethLogger (the game root)
-$gameRoot = Join-Path $scriptPath ".."
+# Define paths relative to the script location
+$gameRoot = [System.IO.Path]::GetFullPath((Join-Path $scriptPath ".."))
 $managed = Join-Path $gameRoot "SimplePlanes 2_Data\Managed"
 $bepcore = Join-Path $scriptPath "BepInEx\core"
 $outDir = Join-Path $scriptPath "BepInEx\plugins"
@@ -23,13 +23,15 @@ $refs = @(
     (Join-Path $bepcore "BepInEx.Unity.Mono.dll")
 )
 
-$refArgs = $refs | ForEach-Object { "/r:`"$_`"" }
+# Build reference arguments for CSC
+$refArgs = $refs | ForEach-Object { "/reference:`"$_`"" }
 $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 $outPath = Join-Path $outDir "NethTelemetry.dll"
 $srcPath = Join-Path $scriptPath "NethTelemetry.cs"
 
 Write-Host "Compiling NethLogger v7.3.0..." -ForegroundColor Cyan
-& $csc /target:library "/out:$outPath" $refArgs $srcPath
+# Run the compiler. Passing $refArgs as an array to ensure PowerShell handles the spaces/quotes correctly.
+& $csc /target:library "/out:$outPath" $refArgs "$srcPath"
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "SUCCESS: NethTelemetry.dll generated at $outPath" -ForegroundColor Green
