@@ -19,24 +19,24 @@ A high-performance, telemetry extraction suite and aerospace dashboard for Simpl
 - **Unity Doorstop**: The DLL proxy (`winhttp.dll`) required for non-intrusive loading.
 
 ### 2. Compilation
-Run the provided build script to compile the DLL:
+Open a command prompt in your **SimplePlanes 2 application directory** and run the build script:
 ```powershell
-.\build.ps1
+.\NethLogger\build.ps1
 ```
-This will generate `NethTelemetry.dll` and place it in the `BepInEx\plugins` folder.
+This will generate `NethTelemetry.dll` and place it in the `NethLogger\BepInEx\plugins` folder automatically.
 
 ### 3. Setup (Non-Intrusive)
 To enable the loader without modifying original game files:
-1. Copy the `doorstop_config.ini` from the `NethLogger` folder to the game root directory (or ensure NethLogger folder added to existing dll search path).
+1. Copy the `doorstop_config.ini` from the `NethLogger` folder into your game root directory (or update the `dll_search_path_override` in your existing config to include `NethLogger\BepInEx\core`).
 2. Ensure `winhttp.dll` (Doorstop) is present in the game root directory.
-3. The mod will now automatically load from the `NethLogger` subfolder.
+3. The mod will now automatically load from the `NethLogger` subfolder on next launch.
 
 ### 4. Usage
 1. Launch **SimplePlanes 2**.
 2. Enter the Flight Scene.
-3. Run the dashboard:
+3. Run the dashboard from your game root:
 ```powershell
-.\listener.ps1
+.\NethLogger\listener.ps1
 ```
 
 ## 📡 Telemetry Protocol
@@ -50,6 +50,8 @@ Data is broadcast over UDP to `127.0.0.1:5555` as a pipe-delimited (`|`) string 
 6. **Systems**: AG Bitmask (8-char), Fuel, FuelCapacity, FuelFlow, Mass, Damage, CritDmg
 7. **Engines**: RPM 1-4
 8. **Environment**: AirDensity, Temperature, SOS, DynamicPressure, TotalDrag
+
+---
 
 ## 📚 Credits & Sources
 - **BepInEx 6.0**: Plugin framework. [GitHub Repository](https://github.com/BepInEx/BepInEx)
