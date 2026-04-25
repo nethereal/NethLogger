@@ -1,0 +1,19 @@
+[Error  :   BepInEx] Unable to start Unity log writer
+[Message: Preloader] BepInEx 6.0.0-be.697 - SimplePlanes 2
+[Message: Preloader] Built from commit 53625800b86f6c68751445248260edf0b27a71c2
+[Info   :   BepInEx] System platform: Windows 10 64-bit
+[Info   :   BepInEx] Process bitness: 64-bit (x64)
+[Info   : Preloader] Running under Unity 6000.0.59f2
+[Info   : Preloader] CLR runtime version: 4.0.30319.42000
+[Info   : Preloader] Supports SRE: True
+[Message: Preloader] Preloader started
+[Info   :AssemblyPatcher] Loaded 1 patcher type from [BepInEx.Unity.Mono.Preloader 6.0.0.0]
+[Info   : Preloader] 1 patcher plugin loaded
+[Info   : Preloader] 234 assemblies discovered
+[Message:AssemblyPatcher] Executing 1 patch(es)
+[Message: Preloader] Preloader finished
+[Message:   BepInEx] Chainloader initialized
+[Info   :   BepInEx] 1 plugin to load
+[Info   :   BepInEx] Loading [Neth Telemetry 7.3.0]
+[Info   :Neth Telemetry] NETH TELEMETRY 7.3.0 - PERF OPTIMIZED
+[Message:   BepInEx] Chainloader startup complete

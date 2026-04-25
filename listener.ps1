@@ -5,7 +5,6 @@ $remoteEndPoint = New-Object System.Net.IPEndPoint([System.Net.IPAddress]::Any, 
 Clear-Host
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   NETH TELEMETRY DASHBOARD v9.0.0" -ForegroundColor Cyan
-Write-Host "        (CLEAN OMNISCIENT) " -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host " Listening on port $port..." -ForegroundColor Gray
 
