@@ -27,7 +27,7 @@ This will generate `NethTelemetry.dll` and place it in the `BepInEx\plugins` fol
 
 ### 3. Setup (Non-Intrusive)
 To enable the loader without modifying original game files:
-1. Copy the `doorstop_config.ini` from the `NethLogger` folder to the game root directory.
+1. Copy the `doorstop_config.ini` from the `NethLogger` folder to the game root directory (or ensure NethLogger folder added to existing dll search path).
 2. Ensure `winhttp.dll` (Doorstop) is present in the game root directory.
 3. The mod will now automatically load from the `NethLogger` subfolder.
 
@@ -50,9 +50,6 @@ Data is broadcast over UDP to `127.0.0.1:5555` as a pipe-delimited (`|`) string 
 6. **Systems**: AG Bitmask (8-char), Fuel, FuelCapacity, FuelFlow, Mass, Damage, CritDmg
 7. **Engines**: RPM 1-4
 8. **Environment**: AirDensity, Temperature, SOS, DynamicPressure, TotalDrag
-
----
-*Created by Antigravity for Nethereal.*
 
 ## 📚 Credits & Sources
 - **BepInEx 6.0**: Plugin framework. [GitHub Repository](https://github.com/BepInEx/BepInEx)
