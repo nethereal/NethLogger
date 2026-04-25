@@ -1,6 +1,8 @@
 # NethLogger for SimplePlanes 2
 **Version 7.3.0 - Performance Optimized**
 
+![Dashboard Preview](pics/dashboard_preview.png)
+
 A high-performance, telemetry extraction suite and aerospace dashboard for SimplePlanes 2, designed for synthetic environment integration and advanced flight logging.
 
 ## 🚀 Features
