@@ -1,10 +1,10 @@
 # NethLogger for SimplePlanes 2
 **Version 7.3.0 - Performance Optimized**
 
-A high-performance, 100Hz telemetry extraction suite and aerospace dashboard for SimplePlanes 2, designed for synthetic environment integration and advanced flight logging.
+A high-performance, telemetry extraction suite and aerospace dashboard for SimplePlanes 2, designed for synthetic environment integration and advanced flight logging.
 
 ## 🚀 Features
-- **100Hz Telemetry Engine**: Ultra-fast extraction pipeline with zero-allocation optimizations.
+- **Telemetry Engine**: Fast extraction pipeline with zero-allocation optimizations.
 - **Advanced Aerodynamics**: Real-time extraction of Mach Number, Dynamic Pressure (Q), TAS, and Speed of Sound.
 - **Precision Instrumentation**: High-fidelity data for IAS, MSL/AGL Altitude, VSpeed, G-Force, AoA, and Slip.
 - **Performance Optimized**: Reflection caching and memory management to ensure zero impact on game simulation.
