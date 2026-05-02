@@ -81,7 +81,12 @@ namespace Neth.SimplePlanes2
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "PitchAngle"))).Append("|");
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "RollAngle"))).Append("|");
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "Heading"))).Append("|");
-                    _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "GForce"))).Append("|");
+                    float gForce = GetPropF(_cachedAircraftCore, "GForce");
+                    if (_cachedRigidbody != null) {
+                        Vector3 acc = GetPropV3(_cachedAircraftCore, "Acceleration");
+                        gForce = Vector3.Dot(acc, _cachedRigidbody.transform.up) / 9.81f;
+                    }
+                    _sb.Append(FmtF(gForce)).Append("|");
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "AngleOfAttack"))).Append("|");
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "AngleOfSlip"))).Append("|");
 
