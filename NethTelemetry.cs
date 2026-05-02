@@ -91,7 +91,7 @@ namespace Neth.SimplePlanes2
                     _sb.Append(FmtF(GetPropF(_cachedAircraftCore, "AngleOfSlip"))).Append("|");
 
                     // [11-13] Linear Vectors
-                    Vector3 pos = GetPropV3(_cachedAircraftCore, "Position");
+                    Vector3 pos = GetPropV3(_cachedAircraftCore, "GlobalPosition");
                     Vector3 vel = GetPropV3(_cachedAircraftCore, "Velocity");
                     Vector3 acc = GetPropV3(_cachedAircraftCore, "Acceleration");
                     _sb.Append(FmtV3(pos)).Append("|");
